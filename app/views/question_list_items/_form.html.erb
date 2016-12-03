@@ -1,0 +1,4 @@
+<%= form_for([@question_list, @question_list.question_list_items.build]) do |f| %>
+  <%= f.text_field :content, placeholder: "New question" %>
+  <%= f.submit %>
+<% end %>

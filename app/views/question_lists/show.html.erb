@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @question_list.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @question_list.description %>
+</p>
+
+<div id="question-list-items-wrapper">
+  <%= render @question_list.question_list_items %>
+  <div id="form">
+    <%= render "question_list_items/form" %>
+  </div>
+</div>
+
+
+
+<%= link_to 'Edit', edit_question_list_path(@question_list) %> |
+<%= link_to 'Back', question_lists_path %>
