@@ -1,5 +1,6 @@
 class QuestionListsController < ApplicationController
   before_action :set_question_list, only: [:show, :edit, :update, :destroy]
+  # before_action :authenticate_user!, only: [:edit, :update, :new, :create, :destroy]
 
   # GET /question_lists
   # GET /question_lists.json

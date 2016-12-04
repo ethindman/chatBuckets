@@ -1,5 +1,6 @@
 class QuestionListItemsController < ApplicationController
   before_action :set_question_list
+  before_action :authenticate_user!
 
   def create
     @question_list_item = @question_list.question_list_items.create(question_list_item_params)
