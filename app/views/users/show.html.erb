@@ -1,3 +1,9 @@
 <p><%= image_tag @user.image.url(:medium) %></p>
 
 <p><%= @user.username %></p>
+
+<% @question_lists.each do |question_list| %>
+  <%= link_to(question_list) do %>
+    <span><%= question_list.title %></span> | <span>created <%= time_ago_in_words(question_list.created_at) %> ago</span>
+  <% end %>
+<% end %>

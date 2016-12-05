@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @question_lists = QuestionList.where(user_id: params[:id])
     @user = User.find(params[:id])
   end
 end

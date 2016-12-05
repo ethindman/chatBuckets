@@ -1,6 +1,6 @@
 class QuestionListsController < ApplicationController
   before_action :set_question_list, only: [:show, :edit, :update, :destroy]
-  # before_action :authenticate_user!, only: [:edit, :update, :new, :create, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :destroy]
 
   # GET /question_lists
   # GET /question_lists.json
@@ -15,7 +15,7 @@ class QuestionListsController < ApplicationController
 
   # GET /question_lists/new
   def new
-    @question_list = QuestionList.new
+    @question_list = current_user.question_lists.build
   end
 
   # GET /question_lists/1/edit
@@ -25,17 +25,9 @@ class QuestionListsController < ApplicationController
   # POST /question_lists
   # POST /question_lists.json
   def create
-    @question_list = QuestionList.new(question_list_params)
-
-    respond_to do |format|
-      if @question_list.save
-        format.html { redirect_to @question_list, notice: 'Question list was successfully created.' }
-        format.json { render :show, status: :created, location: @question_list }
-      else
-        format.html { render :new }
-        format.json { render json: @question_list.errors, status: :unprocessable_entity }
-      end
-    end
+    @question_list = current_user.question_lists.build(question_list_params)
+    @question_list.save
+    redirect_to user_path(current_user)
   end
 
   # PATCH/PUT /question_lists/1
