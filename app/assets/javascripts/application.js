@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require dragula
+//= require materialize
+
+$(document).ready(function() {
+  dragula([document.querySelector('#question-list-item')]);
+});

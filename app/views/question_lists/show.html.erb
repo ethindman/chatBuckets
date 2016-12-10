@@ -8,13 +8,12 @@
   <%= @question_list.description %>
 </p>
 
-<div id="question-list-items-wrapper">
+<div id="question-list-item">
   <%= render @question_list.question_list_items %>
   <div id="form">
     <%= render "question_list_items/form" %>
   </div>
 </div>
-
 
 <%= link_to 'Edit', edit_question_list_path(@question_list) %> |
 <%= link_to 'Back', question_lists_path %>

@@ -1,7 +1,7 @@
-<p>
+<div class="question-list-item">
   <%= link_to(question_list_question_list_item_path(@question_list, question_list_item)) do %>
     <%= question_list_item.content %>
   <% end %>
   |
   <%= link_to "Delete", question_list_question_list_item_path(@question_list,  question_list_item.id), method: :delete, data: { confirm: "Are you sure?" } %>
-</p>
+</div>

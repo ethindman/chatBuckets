@@ -1,6 +1,6 @@
 class QuestionListItemsController < ApplicationController
   before_action :set_question_list
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def show
     @question_list_item = QuestionListItem.find(params[:id])

@@ -1,0 +1,29 @@
+// alert styles
+
+.alert-box {
+  left: 0;
+  padding: 15px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 1099;
+
+  &.success {
+    background-color: $success-color;
+    color: $white;
+  }
+
+  &.notice {
+    background-color: $notice-color;
+  }
+
+  &.alert {
+    background-color: $warning-color;
+  }
+
+  &.danger {
+    background-color: $alert-color;
+    color: $white;
+  }
+}
