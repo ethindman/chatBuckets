@@ -11,6 +11,7 @@ class QuestionListsController < ApplicationController
   # GET /question_lists/1
   # GET /question_lists/1.json
   def show
+    @list_creator = User.find(@question_list.user_id)
   end
 
   # GET /question_lists/new

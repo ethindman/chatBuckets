@@ -18,3 +18,11 @@
 $(document).ready(function() {
   dragula([document.querySelector('#question-list-item')]);
 });
+
+$(document).ready(function() {
+  setTimeout(function() {
+    $('.alert-box').slideUp('slow', function() {
+      $(this).remove();
+    });
+  }, 3000);
+});

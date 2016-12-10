@@ -1,19 +1,35 @@
-<p>
-  <strong>Title:</strong>
-  <%= @question_list.title %>
-</p>
+<div class="row">
+  <!-- sidbar -->
+  <div class="col s12 m3">
+    <div class="list-creator-details">
+      <div class="details-image">
+        <%= image_tag @list_creator.image.url(:medium), class: "responsive-img", alt: "user image" %>
+      </div>
+      <div class="details-body">
+        <p><b><%= @list_creator.username %></b></p>
+      </div>
+      <div class="details-actions">
+        <%= link_to "View profile", user_path(@list_creator) %>
+      </div>
+    </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @question_list.description %>
-</p>
+  </div>
+  <!-- main-content -->
+  <div class="col s12 m9">
+    <div class="question-list-details">
+      <h3><%= @question_list.title %></h3>
+      <p><%= @question_list.description %></p>
+    </div>
 
-<div id="question-list-item">
-  <%= render @question_list.question_list_items %>
-  <div id="form">
-    <%= render "question_list_items/form" %>
+    <div id="question-list-item">
+      <%= render @question_list.question_list_items %>
+
+      <div id="form">
+        <%= render "question_list_items/form" %>
+      </div>
+    </div>
+
+    <%= link_to 'Edit', edit_question_list_path(@question_list) %> |
+    <%= link_to 'Back', question_lists_path %>
   </div>
 </div>
-
-<%= link_to 'Edit', edit_question_list_path(@question_list) %> |
-<%= link_to 'Back', question_lists_path %>

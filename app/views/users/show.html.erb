@@ -1,9 +1,39 @@
-<p><%= image_tag @user.image.url(:medium) %></p>
+<div class="row">
+  <!-- sidebar -->
+  <div class="col sm12 m3">
+    <div class="user-details">
+      <div class="user-image">
+        <%= image_tag @user.image.url(:medium) %>
+      </div>
+      <div class="user-info">
+        <p><b><%= @user.username %></b></p>
+      </div>
+      <% if has_permissions(@user.id) %>
+      <div class="user-actions">
+        <%= link_to 'New Question list', new_question_list_path, class: "btn" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 
-<p><%= @user.username %></p>
-
-<% @question_lists.each do |question_list| %>
-  <%= link_to(question_list) do %>
-    <span><%= question_list.title %></span> | <span>created <%= time_ago_in_words(question_list.created_at) %> ago</span>
-  <% end %>
-<% end %>
+  <!-- main-content -->
+  <div class="col sm12 m9">
+    <div class="question-lists-wrapper row">
+      <% @question_lists.each do |question_list| %>
+        <div class="col s6 m4">
+          <%= link_to(question_list) do %>
+          <div class="card">
+            <div class="card-image">
+              <%= image_tag 'bgs/card-bg-1' %>
+              <span class="card-title"><%= truncate(question_list.title) %></span>
+            </div>
+            <div class="card-content">
+              <p><%= question_list.description %></p>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

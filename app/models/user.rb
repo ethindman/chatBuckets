@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
 
   has_many :question_lists, dependent: :destroy
 
-  has_attached_file :image, styles: { medium: "250x250#", thumb: "150x150#" }, default_url: "paperclip/:style/missing-user-image.png"
+  has_attached_file :image, styles: { medium: "150x150#", small: "85x85#", thumb: "35x35#" }, default_url: "paperclip/:style/missing-user-image.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 end
