@@ -7,9 +7,13 @@ class QuestionListItemsController < ApplicationController
   end
 
   def create
-    @question_list_item = @question_list.question_list_items.create(question_list_item_params)
+    @question_list.question_list_items.build(question_list_item_params)
 
-    redirect_to @question_list
+    if @question_list.save
+      redirect_to @question_list, notice: 'Question successfully added!'
+    else
+      redirect_to @question_list, alert: 'Oops! Please type in some text'
+    end
   end
 
   def edit

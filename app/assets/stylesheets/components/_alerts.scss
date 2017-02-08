@@ -16,10 +16,12 @@
 
   &.notice {
     background-color: $notice-color;
+    color: $white;
   }
 
   &.alert {
     background-color: $warning-color;
+    color: $white;
   }
 
   &.danger {
