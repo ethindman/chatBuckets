@@ -3,15 +3,15 @@
   <div class="col sm12 m3">
     <div class="user-details">
       <div class="user-image">
-        <%= image_tag @user.image.url(:medium) %>
+        <%= image_tag @user.image.url(:medium), class: "circle" %>
       </div>
       <div class="user-info">
         <p><b><%= @user.username %></b></p>
       </div>
       <% if has_permissions(@user.id) %>
-      <div class="user-actions">
-        <%= link_to 'New Bucket', new_question_list_path, class: "btn" %>
-      </div>
+        <div class="user-actions">
+          <%= link_to 'New Bucket', new_question_list_path, class: "btn" %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -27,7 +27,7 @@
               <%= image_tag 'bgs/card-bg-1' %>
               <span class="card-title"><%= truncate(question_list.title, length: 30) %></span>
             </div>
-            <div class="card-content">
+            <div class="card-content" style="min-height: 84px;">
               <p><%= truncate(question_list.description, length: 45) %></p>
             </div>
           </div>

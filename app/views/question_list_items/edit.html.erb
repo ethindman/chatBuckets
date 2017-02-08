@@ -3,6 +3,6 @@
 <%= form_for([@question_list, @question_list_item]) do |f| %>
   <%= f.text_field :content, placeholder: "Content" %>
   <%= f.text_field :translation, placeholder: "Translation" %>
-  <%= f.text_field :note, placeholder: "notes" %>
+  <%= f.text_area :notes, placeholder: "notes", class: "materialize-textarea" %>
   <%= f.submit "Update", class: "btn" %>
 <% end %>

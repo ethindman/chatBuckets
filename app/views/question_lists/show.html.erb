@@ -3,13 +3,12 @@
   <div class="col s12 m3">
     <div class="list-creator-details">
       <div class="details-image">
-        <%= image_tag @list_creator.image.url(:medium), class: "responsive-img", alt: "user image" %>
+        <%= link_to(user_path(@list_creator)) do %>
+          <%= image_tag @list_creator.image.url(:medium), class: "circle responsive-img", alt: "user image" %>
+        <% end %>
       </div>
       <div class="details-body">
         <p><b><%= @list_creator.username %></b></p>
-      </div>
-      <div class="details-actions">
-        <%= link_to "View profile", user_path(@list_creator) %>
       </div>
     </div>
 
