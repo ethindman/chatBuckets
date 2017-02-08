@@ -1,0 +1,8 @@
+<h1>Edit question</h1>
+
+<%= form_for([@question_list, @question_list_item]) do |f| %>
+  <%= f.text_field :content, placeholder: "Content" %>
+  <%= f.text_field :translation, placeholder: "Translation" %>
+  <%= f.text_field :note, placeholder: "notes" %>
+  <%= f.submit "Update", class: "btn" %>
+<% end %>

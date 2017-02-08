@@ -16,20 +16,27 @@
   </div>
   <!-- main-content -->
   <div class="col s12 m9">
-    <div class="question-list-details">
-      <h3><%= @question_list.title %></h3>
-      <p><%= @question_list.description %></p>
-    </div>
+    <div class="section">
+      <div class="question-list-details">
+        <h3><%= @question_list.title %></h3>
+        <p><%= @question_list.description %></p>
+      </div>
 
-    <div id="question-list-item">
-      <%= render @question_list.question_list_items %>
+      <div id="dragula-items-wrapper">
 
-      <div id="form">
-        <%= render "question_list_items/form" %>
+        <%= render @question_list.question_list_items %>
+
+        <div id="form">
+          <%= render "question_list_items/form" %>
+        </div>
       </div>
     </div>
 
-    <%= link_to 'Edit', edit_question_list_path(@question_list) %> |
-    <%= link_to 'Back', question_lists_path %>
+    <div class="section right-align">
+      <p>Bucket Actions:</p>
+      <%= link_to 'Edit Bucket', edit_question_list_path(@question_list), class: "btn blue" %>
+      <%= link_to 'Delete Bucket', question_list_path, method: :delete, data: { confirm: "Are you sure you want to delete this language bucket? This action cannot be undone. You will loose all cards in this bucket." }, class: "btn red" %>
+    </div>
   </div>
+
 </div>

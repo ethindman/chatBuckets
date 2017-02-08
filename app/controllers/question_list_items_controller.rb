@@ -1,9 +1,9 @@
 class QuestionListItemsController < ApplicationController
   before_action :set_question_list
+  before_action :set_question_list_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
 
   def show
-    @question_list_item = QuestionListItem.find(params[:id])
   end
 
   def create
@@ -12,9 +12,15 @@ class QuestionListItemsController < ApplicationController
     redirect_to @question_list
   end
 
-  def destroy
-    @question_list_item = @question_list.question_list_items.find(params[:id])
+  def edit
+  end
 
+  def update
+    @question_list_item.update(question_list_item_params)
+    redirect_to @question_list
+  end
+
+  def destroy
     if @question_list_item.destroy
       flash[:success] = "Question deleted."
     else
@@ -25,11 +31,15 @@ class QuestionListItemsController < ApplicationController
 
   private
 
+  def set_question_list_item
+    @question_list_item = QuestionListItem.find(params[:id])
+  end
+
   def set_question_list
     @question_list = QuestionList.find(params[:question_list_id])
   end
 
   def question_list_item_params
-    params[:question_list_item].permit(:content)
+    params[:question_list_item].permit(:content, :translation, :notes)
   end
 end

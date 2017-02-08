@@ -1,4 +1,4 @@
-<h1>Listing Question Lists</h1>
+<h1>Latest Question Lists</h1>
 
 <table>
   <thead>
@@ -12,11 +12,9 @@
   <tbody>
     <% @question_lists.each do |question_list| %>
       <tr>
-        <td><%= question_list.title %></td>
+
+        <td><%= link_to question_list.title, question_list %></td>
         <td><%= question_list.description %></td>
-        <td><%= link_to 'Show', question_list %></td>
-        <td><%= link_to 'Edit', edit_question_list_path(question_list) %></td>
-        <td><%= link_to 'Destroy', question_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

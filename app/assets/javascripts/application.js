@@ -16,7 +16,7 @@
 //= require materialize
 
 $(document).ready(function() {
-  dragula([document.querySelector('#question-list-item')]);
+  dragula([document.querySelector('#dragula-items-wrapper')]);
 });
 
 $(document).ready(function() {

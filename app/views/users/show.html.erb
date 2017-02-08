@@ -10,7 +10,7 @@
       </div>
       <% if has_permissions(@user.id) %>
       <div class="user-actions">
-        <%= link_to 'New Question list', new_question_list_path, class: "btn" %>
+        <%= link_to 'New Bucket', new_question_list_path, class: "btn" %>
       </div>
       <% end %>
     </div>
@@ -18,17 +18,17 @@
 
   <!-- main-content -->
   <div class="col sm12 m9">
-    <div class="question-lists-wrapper row">
+    <div class="question-lists-wrapper row" id="dragula-items-wrapper">
       <% @question_lists.each do |question_list| %>
         <div class="col s6 m4">
           <%= link_to(question_list) do %>
           <div class="card">
             <div class="card-image">
               <%= image_tag 'bgs/card-bg-1' %>
-              <span class="card-title"><%= truncate(question_list.title) %></span>
+              <span class="card-title"><%= truncate(question_list.title, length: 30) %></span>
             </div>
             <div class="card-content">
-              <p><%= question_list.description %></p>
+              <p><%= truncate(question_list.description, length: 45) %></p>
             </div>
           </div>
           <% end %>
