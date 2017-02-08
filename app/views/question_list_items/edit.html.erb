@@ -6,3 +6,7 @@
   <%= f.text_area :notes, placeholder: "notes", class: "materialize-textarea" %>
   <%= f.submit "Update", class: "btn" %>
 <% end %>
+
+<br>
+
+<%= link_to 'Cancel', question_list_question_list_item_path(@question_list, @question_list_item) %>
