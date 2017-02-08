@@ -1,3 +1,5 @@
+<% @question_list ? @question_list : @question_list = current_user.question_lists.build %>
+
 <%= form_for(@question_list) do |f| %>
   <% if @question_list.errors.any? %>
     <div id="error_explanation">

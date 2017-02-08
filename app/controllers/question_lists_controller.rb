@@ -1,6 +1,6 @@
 class QuestionListsController < ApplicationController
   before_action :set_question_list, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update, :new, :create, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :create, :destroy]
 
   # GET /question_lists
   # GET /question_lists.json
@@ -14,11 +14,6 @@ class QuestionListsController < ApplicationController
     @list_creator = User.find(@question_list.user_id)
   end
 
-  # GET /question_lists/new
-  def new
-    @question_list = current_user.question_lists.build
-  end
-
   # GET /question_lists/1/edit
   def edit
   end
@@ -27,8 +22,11 @@ class QuestionListsController < ApplicationController
   # POST /question_lists.json
   def create
     @question_list = current_user.question_lists.build(question_list_params)
-    @question_list.save
-    redirect_to user_path(current_user)
+    if @question_list.save
+      redirect_to user_path(current_user), notice: 'Bucket was successfully created.'
+    else
+      redirect_to user_path(current_user), alert: 'Oops! Something went wrong. Please try again.'
+    end
   end
 
   # PATCH/PUT /question_lists/1
@@ -36,7 +34,7 @@ class QuestionListsController < ApplicationController
   def update
     respond_to do |format|
       if @question_list.update(question_list_params)
-        format.html { redirect_to @question_list, notice: 'Question list was successfully updated.' }
+        format.html { redirect_to @question_list, notice: 'Bucket was successfully updated.' }
         format.json { render :show, status: :ok, location: @question_list }
       else
         format.html { render :edit }
@@ -50,7 +48,7 @@ class QuestionListsController < ApplicationController
   def destroy
     @question_list.destroy
     respond_to do |format|
-      format.html { redirect_to question_lists_url, notice: 'Question list was successfully destroyed.' }
+      format.html { redirect_to user_path(current_user), notice: 'Bucket was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

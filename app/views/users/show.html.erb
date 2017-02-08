@@ -10,7 +10,20 @@
       </div>
       <% if has_permissions(@user.id) %>
         <div class="user-actions">
-          <%= link_to 'New Bucket', new_question_list_path, class: "btn" %>
+          <!-- Modal Trigger -->
+          <a class="btn" href="#modal1">New Bucket</a>
+
+          <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Create New Bucket</h4>
+              <%= render 'question_lists/form' %>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-action modal-close btn-flat">Cancel</a>
+            </div>
+          </div>
+
         </div>
       <% end %>
     </div>

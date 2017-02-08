@@ -26,3 +26,8 @@ $(document).ready(function() {
     });
   }, 3000);
 });
+
+// Initialize modals
+$(document).ready(function(){
+  $('.modal').modal();
+});
