@@ -1,0 +1,15 @@
+// Mixin definitions
+
+// Set variable single property
+// Quick mixin for setting single property value for small and medium-up screens
+// @param {string} $property-name - the property you are going to change (e.g. margin)
+// @param {string} $small-screen-value - the value you set for small screens (e.g. 10px)
+// @param {string} $mediup-up-screen-value - the value you set for mediup-up screens (e.g. 10px)
+//
+@mixin set-variable-single-property($property-name, $small-screen-value, $medium-up-value) {
+  #{$property-name}: $small-screen-value;
+
+  @media only screen and (min-device-width : 768px) {
+    #{$property-name}: $medium-up-value;
+  }
+}

@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207040414) do
+ActiveRecord::Schema.define(version: 20170209044850) do
 
   create_table "question_list_items", force: :cascade do |t|
     t.string   "content"
     t.integer  "question_list_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "translation"
     t.text     "notes"
+    t.text     "my_response"
+    t.text     "question_variations"
   end
 
   add_index "question_list_items", ["question_list_id"], name: "index_question_list_items_on_question_list_id"
