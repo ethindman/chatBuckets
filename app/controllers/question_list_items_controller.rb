@@ -1,6 +1,6 @@
 class QuestionListItemsController < ApplicationController
   before_action :set_question_list
-  before_action :set_question_list_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_question_list_item, only: [:show, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
 
   def show
@@ -16,12 +16,9 @@ class QuestionListItemsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     @question_list_item.update(question_list_item_params)
-    redirect_to @question_list
+    redirect_to :back
   end
 
   def destroy

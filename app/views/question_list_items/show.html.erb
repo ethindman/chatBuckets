@@ -1,9 +1,19 @@
+<p><%= link_to @question_list.title, @question_list %></p>
+
+<div class="right">
+  <!-- Modal Trigger -->
+  <%= link_to "Edit Card", "#modal1", class: "flat-btn" %>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <i class="material-icons modal-action modal-close right">close</i>
+      <h4>Edit Card</h4>
+      <%= render 'edit_list_item' %>
+    </div>
+  </div>
+</div>
+
 <h1><%= @question_list_item.content %></h1>
 <p class="text-muted"><%= @question_list_item.translation %></p>
 <p style="white-space: pre-wrap;"><%= @question_list_item.notes %></p>
-
-<%= link_to "edit", edit_question_list_question_list_item_path, class: "btn blue" %>
-
-<div class="section">
-  <p><%= link_to "back", @question_list %></p>
-</div>

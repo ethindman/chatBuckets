@@ -16,21 +16,22 @@
   <!-- main-content -->
   <div class="col s12 m9">
     <div class="section">
+
       <div class="right">
         <%= link_to 'Edit Bucket', edit_question_list_path(@question_list), class: "flat-btn" %>
       </div>
+
       <div class="question-list-details">
         <h3><%= @question_list.title %></h3>
         <p><%= @question_list.description %></p>
       </div>
 
       <div id="dragula-items-wrapper">
-
         <%= render @question_list.question_list_items %>
+      </div>
 
-        <div id="form">
-          <%= render "question_list_items/form" %>
-        </div>
+      <div>
+        <%= render "question_list_items/add_list_item" %>
       </div>
     </div>
 

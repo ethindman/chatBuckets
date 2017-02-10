@@ -3,3 +3,8 @@
 h1, h2, h3, h4, h5, h6, p {
   margin-top: 0;
 }
+
+.text-muted {
+  color: rgba($black, 0.5);
+  font-weight: 300;
+}

@@ -1,12 +1,6 @@
-<h1>Edit question</h1>
-
 <%= form_for([@question_list, @question_list_item]) do |f| %>
   <%= f.text_field :content, placeholder: "Content" %>
   <%= f.text_field :translation, placeholder: "Translation" %>
   <%= f.text_area :notes, placeholder: "notes", class: "materialize-textarea" %>
-  <%= f.submit "Update", class: "btn" %>
+  <%= f.submit "Save", class: "btn" %>
 <% end %>
-
-<br>
-
-<%= link_to 'Cancel', question_list_question_list_item_path(@question_list, @question_list_item) %>
