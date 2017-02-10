@@ -18,7 +18,17 @@
     <div class="section">
 
       <div class="right">
-        <%= link_to 'Edit Bucket', edit_question_list_path(@question_list), class: "flat-btn" %>
+        <!-- Modal Trigger -->
+        <%= link_to "Edit Bucket", "#modal1", class: "flat-btn" %>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <i class="material-icons modal-action modal-close right">close</i>
+            <h4>Edit Bucket</h4>
+            <%= render 'form' %>
+          </div>
+        </div>
       </div>
 
       <div class="question-list-details">

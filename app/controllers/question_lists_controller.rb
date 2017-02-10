@@ -1,6 +1,6 @@
 class QuestionListsController < ApplicationController
-  before_action :set_question_list, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update, :create, :destroy]
+  before_action :set_question_list, only: [:show, :update, :destroy]
+  before_action :authenticate_user!, only: [:update, :create, :destroy]
 
   # GET /question_lists
   # GET /question_lists.json
@@ -12,10 +12,6 @@ class QuestionListsController < ApplicationController
   # GET /question_lists/1.json
   def show
     @list_creator = User.find(@question_list.user_id)
-  end
-
-  # GET /question_lists/1/edit
-  def edit
   end
 
   # POST /question_lists
