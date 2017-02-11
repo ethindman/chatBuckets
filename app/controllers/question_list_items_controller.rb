@@ -41,6 +41,6 @@ class QuestionListItemsController < ApplicationController
   end
 
   def question_list_item_params
-    params[:question_list_item].permit(:content, :translation, :notes)
+    params[:question_list_item].permit(:content, :translation, :notes, :my_response, :question_variations)
   end
 end

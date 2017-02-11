@@ -1,0 +1,17 @@
+// Question list item (show) styles
+
+.list-item-property {
+  .edit_question_list_item {
+    display: none;
+  }
+
+  &.edit-mode {
+    .edit_question_list_item {
+      display: block;
+    }
+
+    .list-item-content {
+      display: none;
+    }
+  }
+}
