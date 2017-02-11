@@ -15,38 +15,42 @@
 </div>
 
 <h1><%= @question_list_item.content %></h1>
-<p class="text-muted"><%= @question_list_item.translation %></p>
 
-<div class="contain-mb-20 list-item-property">
-    <h5>My responses: </h5>
-    <p class="word-break text-muted list-item-content"><%= !@question_list_item.my_response.nil? && @question_list_item.my_response.length > 0 ? @question_list_item.my_response : 'Add a response' %></p>
-    <%= form_for([@question_list, @question_list_item], method: :put) do |f| %>
-      <%= f.text_area :my_response, placeholder: "My response", autocomplete: "off", class: "materialize-textarea" %>
-      <%= f.submit "Add", class: "btn" %>
-      <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
-    <% end %>
+<div class="container-mb-20 list-item-property">
+  <p class="word-break text-muted list-item-content"><%= !@question_list_item.translation.nil? && @question_list_item.translation.length > 0 ? @question_list_item.translation : 'Add a response' %></p>
+  <%= form_for([@question_list, @question_list_item], method: :put) do |f| %>
+    <%= f.text_field :translation, placeholder: "My response", autocomplete: "off", class: "list-item-input" %>
+    <%= f.submit "Save", class: "btn" %>
+    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
+  <% end %>
 </div>
 
-<br>
-
-<div class="contain-mb-20 list-item-property">
-    <h5>Variations: </h5>
-    <p class="word-break text-muted list-item-content"><%= !@question_list_item.question_variations.nil? && @question_list_item.question_variations.length > 0 ? @question_list_item.question_variations : "Add variations" %></p>
-    <%= form_for([@question_list, @question_list_item], method: :put) do |f| %>
-      <%= f.text_area :question_variations, placeholder: "Variations", autocomplete: "off", class: "materialize-textarea" %>
-      <%= f.submit "Add", class: "btn" %>
-      <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
-    <% end %>
+<div class="container-mb-20 list-item-property">
+  <h5>My responses: </h5>
+  <p class="word-break text-muted list-item-content"><%= !@question_list_item.my_response.nil? && @question_list_item.my_response.length > 0 ? @question_list_item.my_response : 'Add a response' %></p>
+  <%= form_for([@question_list, @question_list_item], method: :put) do |f| %>
+    <%= f.text_area :my_response, placeholder: "My response", autocomplete: "off", class: "materialize-textarea list-item-input" %>
+    <%= f.submit "Save", class: "btn" %>
+    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
+  <% end %>
 </div>
 
-<br>
+<div class="container-mb-20 list-item-property">
+  <h5>Variations: </h5>
+  <p class="word-break text-muted list-item-content"><%= !@question_list_item.question_variations.nil? && @question_list_item.question_variations.length > 0 ? @question_list_item.question_variations : "Add variations" %></p>
+  <%= form_for([@question_list, @question_list_item], method: :put) do |f| %>
+    <%= f.text_area :question_variations, placeholder: "Variations", autocomplete: "off", class: "materialize-textarea list-item-input" %>
+    <%= f.submit "Save", class: "btn" %>
+    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
+  <% end %>
+</div>
 
-<div class="contain-mb-20 list-item-property">
+<div class="container-mb-20 list-item-property">
   <h5>Notes: </h5>
   <p class="word-break text-muted list-item-content"><%= !@question_list_item.notes.nil? && @question_list_item.notes.length > 0 ? @question_list_item.notes : "Add notes" %></p>
   <%= form_for([@question_list, @question_list_item], method: :put) do |f| %>
-    <%= f.text_area :notes, placeholder: "Notes", autocomplete: "off", class: "materialize-textarea" %>
-    <%= f.submit "Add", class: "btn" %>
+    <%= f.text_area :notes, placeholder: "Notes", autocomplete: "off", class: "materialize-textarea list-item-input" %>
+    <%= f.submit "Save", class: "btn" %>
     <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
   <% end %>
 </div>
@@ -55,10 +59,11 @@
   $('.list-item-content').on('click', function() {
     var $this = $(this);
     var $listItem = $this.parent();
-    var $editInput = $this.siblings('form').find('.materialize-textarea');
+    var $editInput = $this.siblings('form').find('.list-item-input');
     $listItem.addClass('edit-mode');
     $editInput.focus();
   });
+
   $('.cancel-form-submission').on('click', function() {
     var $this = $(this);
     var $listItem = $this.parent().parent();
