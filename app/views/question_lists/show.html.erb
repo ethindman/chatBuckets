@@ -36,12 +36,12 @@
         <p><%= @question_list.description %></p>
       </div>
 
-      <div id="dragula-items-wrapper">
-        <%= render @question_list.question_list_items %>
+      <div class="container-mb-20">
+        <%= render "question_list_items/add_list_item" %>
       </div>
 
-      <div>
-        <%= render "question_list_items/add_list_item" %>
+      <div id="dragula-items-wrapper">
+        <%= render 'question_list_items' %>
       </div>
     </div>
 

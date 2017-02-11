@@ -12,12 +12,14 @@ class QuestionListsController < ApplicationController
   # GET /question_lists/1.json
   def show
     @list_creator = User.find(@question_list.user_id)
+    @question_list_items = @question_list.question_list_items.order(created_at: "DESC")
   end
 
   # POST /question_lists
   # POST /question_lists.json
   def create
     @question_list = current_user.question_lists.build(question_list_params)
+
     if @question_list.save
       redirect_to user_path(current_user), notice: 'Bucket was successfully created.'
     else
