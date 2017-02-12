@@ -10,7 +10,7 @@ class QuestionListItemsController < ApplicationController
     @question_list.question_list_items.build(question_list_item_params)
 
     if @question_list.save
-      redirect_to @question_list, notice: 'Question successfully added!'
+      redirect_to @question_list
     else
       redirect_to @question_list, alert: 'Oops! Please type in some text'
     end

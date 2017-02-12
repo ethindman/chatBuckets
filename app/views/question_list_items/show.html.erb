@@ -55,6 +55,10 @@
   <% end %>
 </div>
 
+<div class="right">
+  <%= link_to "Delete", question_list_question_list_item_path(@question_list,  @question_list_item.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn red" %>
+</div>
+
 <script>
   $('.list-item-content').on('click', function() {
     var $this = $(this);
