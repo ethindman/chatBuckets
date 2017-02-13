@@ -1,0 +1,7 @@
+<%= form_for(@card) do |f| %>
+  <%= f.text_field :sentence, placeholder: "Sentence" %>
+  <%= f.text_field :translation, placeholder: "Translation" %>
+  <%= f.text_area :my_response, placeholder: "My Response", class: "materialize-textarea"  %>
+  <%= f.text_area :variations, placeholder: "Variations", class: "materialize-textarea" %>
+  <%= f.submit "Save", class: "btn" %>
+<% end %>

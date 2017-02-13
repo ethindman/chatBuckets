@@ -1,0 +1,64 @@
+<div class="right">
+  <!-- Modal Trigger -->
+  <%= link_to "Edit Card", "#modal1", class: "flat-btn" %>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <i class="material-icons modal-action modal-close right">close</i>
+      <h4>Edit Card</h4>
+      <%= render 'edit_card_form.html' %>
+    </div>
+  </div>
+</div>
+
+<h1><%= @card.sentence %></h1>
+
+<div class="container-mb-20 list-item-property">
+  <p class="word-break text-muted list-item-content"><%= !@card.translation.nil? && @card.translation.length > 0 ? @card.translation : 'Add translation' %></p>
+  <%= form_for(@card, method: :put) do |f| %>
+    <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off", class: "list-item-input" %>
+    <%= f.submit "Save", class: "btn" %>
+    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
+  <% end %>
+</div>
+
+<div class="container-mb-20 list-item-property">
+  <h5>My responses: </h5>
+  <p class="word-break text-muted list-item-content"><%= !@card.my_response.nil? && @card.my_response.length > 0 ? @card.my_response : 'Add a response' %></p>
+  <%= form_for([@question_list, @card], method: :put) do |f| %>
+    <%= f.text_area :my_response, placeholder: "My response", autocomplete: "off", class: "materialize-textarea list-item-input" %>
+    <%= f.submit "Save", class: "btn" %>
+    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
+  <% end %>
+</div>
+
+<div class="container-mb-20 list-item-property">
+  <h5>Variations: </h5>
+  <p class="word-break text-muted list-item-content"><%= !@card.variations.nil? && @card.variations.length > 0 ? @card.variations : "Add variations" %></p>
+  <%= form_for([@question_list, @card], method: :put) do |f| %>
+    <%= f.text_area :variations, placeholder: "Variations", autocomplete: "off", class: "materialize-textarea list-item-input" %>
+    <%= f.submit "Save", class: "btn" %>
+    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
+  <% end %>
+</div>
+
+<div class="right">
+  <%= link_to "Delete", card_path(@card), method: :delete, data: { confirm: "Are you sure?" }, class: "btn red" %>
+</div>
+
+<script>
+  $('.list-item-content').on('click', function() {
+    var $this = $(this);
+    var $listItem = $this.parent();
+    var $editInput = $this.siblings('form').find('.list-item-input');
+    $listItem.addClass('edit-mode');
+    $editInput.focus();
+  });
+
+  $('.cancel-form-submission').on('click', function() {
+    var $this = $(this);
+    var $listItem = $this.parent().parent();
+    $listItem.removeClass('edit-mode');
+  });
+</script>

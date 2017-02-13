@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sentence: MyString
+  translation: MyText
+  variations: MyText
+  my_response: MyText
+  user_id: 1
+  bucket_id: 1
+
+two:
+  sentence: MyString
+  translation: MyText
+  variations: MyText
+  my_response: MyText
+  user_id: 1
+  bucket_id: 1

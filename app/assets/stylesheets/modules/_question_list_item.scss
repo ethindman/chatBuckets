@@ -1,12 +1,14 @@
 // Question list item (show) styles
 
 .list-item-property {
-  .edit_question_list_item {
+  .edit_question_list_item,
+  .edit_card {
     display: none;
   }
 
   &.edit-mode {
-    .edit_question_list_item {
+    .edit_question_list_item,
+    .edit_card {
       display: block;
     }
 

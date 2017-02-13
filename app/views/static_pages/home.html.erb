@@ -1,0 +1,29 @@
+<h1>My Feed</h1>
+
+<div class="clearfix">
+  <%= form_for(@card) do |f| %>
+    <%= f.text_field :sentence, placeholder: "New sentence", autocomplete: "off" %>
+    <div class="right-align">
+      <%= f.submit "Add", class: "btn" %>
+    </div>
+  <% end %>
+</div>
+
+<br>
+
+<% @cards.each do |card| %>
+  <div class="question-list-item">
+    <div class="right">
+      <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
+    </div>
+    <%= link_to card.sentence, card, class: "flow-text" %>
+    <% if card.translation.nil? %>
+      <%= form_for(card, method: :put) do |f| %>
+        <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
+        <%= f.submit "Add Translation", class: "btn" %>
+      <% end %>
+    <% else %>
+      <div class="text-muted"><%= card.translation %></div>
+    <% end %>
+  </div>
+<% end %>

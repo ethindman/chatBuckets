@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  root 'static_pages#home'
 
-  root 'question_lists#index'
+  devise_for :users
 
   resources :users, only: [:index, :show]
 
   resources :question_lists do
     resources :question_list_items
   end
+
+  resources :cards
+
 end
