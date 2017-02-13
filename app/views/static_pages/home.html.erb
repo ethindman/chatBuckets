@@ -1,23 +1,27 @@
 <h1>My Feed</h1>
 
 <div class="clearfix">
+  <% if signed_in? %>
+
   <%= form_for(@card) do |f| %>
     <%= f.text_field :sentence, placeholder: "New sentence", autocomplete: "off" %>
     <div class="right-align">
       <%= f.submit "Add", class: "btn" %>
     </div>
   <% end %>
+  <% end %>
 </div>
 
 <br>
 
-<% @cards.each do |card| %>
+<% if signed_in? && @feed_items.any? %>
+<% @feed_items.each do |card| %>
   <div class="question-list-item">
     <div class="right">
       <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
     </div>
     <%= link_to card.sentence, card, class: "flow-text" %>
-    <% if card.translation.nil? %>
+    <% if has_permissions(card.user.id) && card.translation.nil? %>
       <%= form_for(card, method: :put) do |f| %>
         <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
         <%= f.submit "Add Translation", class: "btn" %>
@@ -27,3 +31,7 @@
     <% end %>
   </div>
 <% end %>
+<% end %>
+
+
+
