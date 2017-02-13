@@ -20,6 +20,19 @@
     <div class="right">
       <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
     </div>
+
+    <div class="card-info">
+      <ul class="inline-list top">
+        <li><%= link_to(user_path(card.user)) do %>
+        <%= image_tag card.user.image.url(:thumb), class: "circle profile-image" %>
+      <% end %></li>
+      <li><%= link_to card.user.username, user_path(card.user) %> <span class="text-muted"><%= time_ago_in_words(card.created_at) %></span></li>
+      </ul>
+    </div>
+
+
+
+
     <%= link_to card.sentence, card, class: "flow-text" %>
     <% if has_permissions(card.user.id) && card.translation.nil? %>
       <%= form_for(card, method: :put) do |f| %>

@@ -1,4 +1,12 @@
 <%= form_for(current_user.relationships.find_by(followed_id: @user.id),
              html: { method: :delete }) do |f| %>
-  <%= f.submit "Unfollow", class: "btn btn-block red" %>
+  <%= f.submit "Following", class: "btn btn-block follow-btn" %>
 <% end %>
+
+<script>
+  $('.follow-btn').on('mouseenter', function() {
+    $(this).attr('value', 'Unfollow?').addClass('red');
+  }).on('mouseleave', function() {
+    $(this).attr('value', 'Following').removeClass('red');
+  });
+</script>
