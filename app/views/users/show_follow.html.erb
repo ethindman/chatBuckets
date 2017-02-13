@@ -1,0 +1,10 @@
+<h1><%= @title %></h1>
+
+<% @users.each do |user| %>
+  <%= link_to(user) do %>
+    <div class="chip">
+      <%= image_tag user.image.url(:thumb), class: "circle" %>
+      <%= user.username %>
+    </div><br>
+  <% end %>
+<% end %>

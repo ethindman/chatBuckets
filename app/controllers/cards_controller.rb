@@ -28,7 +28,7 @@ class CardsController < ApplicationController
 
   def destroy
     if @card.destroy
-      flash[:notice] = "Your card was deleted!"
+      flash[:success] = "Your card was deleted!"
       redirect_to :root
     else
       flash[:error] = "Oops! Something went wrong... Please try again."
