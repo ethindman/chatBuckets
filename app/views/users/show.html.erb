@@ -8,6 +8,16 @@
       <div class="user-info">
         <p><b><%= @user.username %></b></p>
       </div>
+      <% unless !signed_in? || current_user?(@user) %>
+        <div class="follow-form">
+          <% if current_user.following?(@user) %>
+            <%= render 'shared/unfollow' %>
+          <% else %>
+            <%= render 'shared/follow' %>
+          <% end %>
+        </div>
+      <% end %>
+
       <% if has_permissions(@user.id) %>
         <div class="user-actions">
           <!-- Modal Trigger -->

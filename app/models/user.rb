@@ -4,18 +4,38 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :question_lists, dependent: :destroy
-
-  has_many :cards, dependent: :destroy
-
   has_attached_file :image, styles: { medium: "150x150#", small: "85x85#", thumb: "35x35#" }, default_url: "paperclip/:style/missing-user-image.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+  # Relationships
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name: 'Relationship',
+                                   dependent: :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower
+
+  # Question lists and Cards
+  has_many :question_lists, dependent: :destroy
+  has_many :cards, dependent: :destroy
+
   def feed
-    # r = Relationship.arel_table
-    # t = Card.arel_table
-    # sub_query = t[:user_id].in(r.where(r[:follower_id].eq(id)).project(r[:followed_id]))
-    # Tweet.where(sub_query.or(t[:user_id].eq(id)))
+    r = Relationship.arel_table
+    t = Card.arel_table
+    sub_query = t[:user_id].in(r.where(r[:follower_id].eq(id)).project(r[:followed_id]))
+    Card.where(sub_query.or(t[:user_id].eq(id)))
+  end
+
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
   end
 
 end

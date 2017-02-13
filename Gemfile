@@ -13,6 +13,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise', '~> 4.2'
 gem 'paperclip', '~> 5.1'
 
+# pagination
+gem 'will_paginate'
+
 # make dragable elements
 gem 'dragula-rails', '~> 3.5'
 

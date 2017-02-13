@@ -4,6 +4,7 @@
     <ul class="right hide-on-med-and-down">
       <!-- Dropdown Trigger -->
       <% if user_signed_in? %>
+      <li><%= link_to "Search Users", users_path %></li>
       <li>
         <%= link_to(user_path(current_user.id)) do %>
           <%= image_tag current_user.image.url(:thumb), class: "circle profile-image" %>
