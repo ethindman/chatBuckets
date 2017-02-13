@@ -1,50 +1,76 @@
-<h1>My Feed</h1>
-
-<div class="clearfix">
-  <% if signed_in? %>
-
-  <%= form_for(@card) do |f| %>
-    <%= f.text_field :sentence, placeholder: "New sentence", autocomplete: "off" %>
-    <div class="right-align">
-      <%= f.submit "Add", class: "btn" %>
+<% if signed_in? %>
+<div class="row">
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-content">
+        <ul class="">
+          <li><%= link_to(user_path(current_user)) do %>
+          <%= image_tag current_user.image.url(:thumb), class: "circle profile-image" %>
+        <% end %></li>
+        <li><%= link_to current_user.username, user_path(current_user) %></li>
+        </ul>
+      </div>
+      <div class="card-action">
+        <table>
+          <thead>
+            <tr>
+              <th>Cards</th>
+              <th>Followers</th>
+              <th>Following</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= current_user.cards.count %></td>
+              <td><%= link_to current_user.followers.count, followers_user_path(current_user) %></td>
+              <td><%= link_to current_user.followed_users.count, following_user_path(current_user) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  <% end %>
-  <% end %>
-</div>
+  </div>
 
-<br>
+  <div class="col sm12 m8">
 
-<% if signed_in? && @feed_items.any? %>
-<% @feed_items.each do |card| %>
-  <div class="question-list-item">
-    <div class="right">
-      <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
-    </div>
-
-    <div class="card-info">
-      <ul class="inline-list top">
-        <li><%= link_to(user_path(card.user)) do %>
-        <%= image_tag card.user.image.url(:thumb), class: "circle profile-image" %>
-      <% end %></li>
-      <li><%= link_to card.user.username, user_path(card.user) %> <span class="text-muted"><%= time_ago_in_words(card.created_at) %></span></li>
-      </ul>
-    </div>
-
-
-
-
-    <%= link_to card.sentence, card, class: "flow-text" %>
-    <% if has_permissions(card.user.id) && card.translation.nil? %>
-      <%= form_for(card, method: :put) do |f| %>
-        <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
-        <%= f.submit "Add Translation", class: "btn" %>
-      <% end %>
-    <% else %>
-      <div class="text-muted"><%= card.translation %></div>
+  <div class="container-mb-20">
+    <%= form_for(@card) do |f| %>
+      <%= f.text_field :sentence, placeholder: "Add a new language memo?", autocomplete: "off" %>
+      <div class="right-align">
+        <%= f.submit "Add", class: "btn" %>
+      </div>
     <% end %>
   </div>
+
+    <% @feed_items.each do |card| %>
+      <div class="question-list-item">
+        <div class="right">
+          <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
+        </div>
+
+        <div class="card-info">
+          <ul class="inline-list top">
+            <li><%= link_to(user_path(card.user)) do %>
+            <%= image_tag card.user.image.url(:thumb), class: "circle profile-image" %>
+          <% end %></li>
+          <li><%= link_to card.user.username, user_path(card.user) %> <span class="text-muted"><%= time_ago_in_words(card.created_at) %> ago</span></li>
+          </ul>
+        </div>
+
+        <%= link_to card.sentence, card, class: "flow-text" %>
+        <% if has_permissions(card.user.id) && card.translation.nil? %>
+          <%= form_for(card, method: :put) do |f| %>
+            <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
+            <%= f.submit "Add Translation", class: "btn" %>
+          <% end %>
+        <% else %>
+          <div class="text-muted"><%= card.translation %></div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>
+
 <% end %>
-<% end %>
-
-
-
