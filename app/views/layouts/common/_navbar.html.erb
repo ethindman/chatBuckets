@@ -9,7 +9,7 @@
           <%= image_tag current_user.image.url(:thumb), class: "circle profile-image" %>
         <% end %>
       </li>
-      <li><a class="dropdown-button" href="#!" data-activates="userMenu"><i class="material-icons right">dots</i></a></li>
+      <li><a class="dropdown-button" href="#!" data-activates="userMenu">Account<i class="material-icons right">arrow_drop_down</i></a></li>
       <!-- dropdown definition -->
       <ul id="userMenu" class="dropdown-content">
         <li><%= link_to "MyBuckets", user_path(current_user.id) %></li>
