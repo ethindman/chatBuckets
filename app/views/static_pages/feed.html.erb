@@ -46,7 +46,9 @@
     <% @feed_items.each do |card| %>
       <div class="question-list-item">
         <div class="right">
-          <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% if has_permissions(card.user.id) %>
+            <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
         </div>
 
         <div class="card-info">
