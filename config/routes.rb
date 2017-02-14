@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   resources :cards
 
+  get '/welcome', to: 'static_pages#welcome'
+
 end
