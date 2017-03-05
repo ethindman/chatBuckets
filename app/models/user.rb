@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_attached_file :image, styles: { medium: "150x150#", small: "85x85#", thumb: "35x35#" }, default_url: "paperclip/:style/missing-user-image.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+  # validates :username, uniqueness: true
+
   # Relationships
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
   has_many :followed_users, through: :relationships, source: :followed
@@ -23,7 +25,8 @@ class User < ActiveRecord::Base
     r = Relationship.arel_table
     t = Card.arel_table
     sub_query = t[:user_id].in(r.where(r[:follower_id].eq(id)).project(r[:followed_id]))
-    Card.where(sub_query.or(t[:user_id].eq(id)))
+    # Card.where(sub_query.or(t[:user_id].eq(id))) #Following cards + current_user cards
+    Card.where(sub_query) # Only following cards
   end
 
   def following?(other_user)

@@ -3,3 +3,7 @@
 .word-break {
   white-space: pre-wrap;
 }
+
+.rounded {
+  border-radius: $global-radius;
+}

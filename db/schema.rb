@@ -11,13 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213095010) do
+ActiveRecord::Schema.define(version: 20170305102320) do
 
   create_table "cards", force: :cascade do |t|
     t.string   "sentence"
     t.text     "translation"
-    t.text     "variations"
-    t.text     "my_response"
     t.integer  "user_id"
     t.integer  "bucket_id"
     t.datetime "created_at",  null: false

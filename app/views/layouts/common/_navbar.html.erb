@@ -1,8 +1,9 @@
 <nav>
-  <div class="nav-wrapper">
-    <%= link_to "ChatBuckets", root_path, class: "brand-logo center" %>
+  <div class="nav-wrapper container">
+    <%= link_to "ChattyApp", root_path, class: "brand-logo center" %>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
-      <li><%= link_to "Search Users", users_path %></li>
+      <li class="<%= 'active' if controller?("static_pages") && action?("feed") %>"><%= link_to "Home", root_path %></li>
+      <li class="<%= 'active' if controller?("users") && action?("index") %>"><%= link_to "People", users_path %></li>
     </ul>
 
     <ul class="right hide-on-med-and-down">
