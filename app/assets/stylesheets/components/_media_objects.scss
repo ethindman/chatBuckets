@@ -1,0 +1,51 @@
+// Media object styles
+
+.media-object {
+  display: block;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  img {
+    max-width: none;
+  }
+}
+
+.media-object-section {
+  display: table-cell;
+  vertical-align: top;
+
+  &:first-child {
+    padding-right: 1rem;
+  }
+
+  &:last-child:not(:nth-child(2)) {
+    padding-left: 1rem;
+  }
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.middle {
+    vertical-align: middle;
+  }
+
+  &.bottom {
+    vertical-align: bottom;
+  }
+}
+
+@media all and (max-width: 340px) {
+  .media-object.stack-for-small .media-object-section {
+    display: block;
+    padding: 0;
+    padding-bottom: 1rem;
+  }
+
+  .media-object.stack-for-small .media-object-section img {
+    width: 100%;
+  }
+}

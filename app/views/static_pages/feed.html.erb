@@ -6,7 +6,7 @@
         <ul>
           <li>
             <%= link_to(user_path(current_user)) do %>
-              <%= image_tag current_user.image.url(:thumb), class: "circle profile-image" %>
+              <%= image_tag current_user.image.url(:thumb), class: "rounded profile-image" %>
             <% end %>
           </li>
           <li><%= link_to current_user.username, user_path(current_user) %></li>
@@ -15,7 +15,7 @@
         <table>
           <thead>
             <tr>
-              <th>Cards</th>
+              <th>Chats</th>
               <th>Followers</th>
               <th>Following</th>
             </tr>
@@ -34,43 +34,18 @@
 
   <div class="col sm12 m8">
 
-  <div class="container-mb-20">
-    <%= form_for(@card) do |f| %>
-      <%= f.text_field :sentence, placeholder: "Add a new language memo?", autocomplete: "off" %>
-      <div class="right-align">
-        <%= f.submit "Add", class: "btn" %>
-      </div>
-    <% end %>
-  </div>
-
-    <% @feed_items.each do |card| %>
-      <div class="question-list-item">
-        <div class="right">
-          <% if has_permissions(card.user.id) %>
-            <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
+    <div class="container-mb-20">
+      <%= form_for(@card) do |f| %>
+        <%= f.text_field :sentence, placeholder: "What's new?", autocomplete: "off" %>
+        <div class="right-align">
+          <%= f.submit "Chat", class: "btn" %>
         </div>
+      <% end %>
+    </div>
 
-        <div class="card-info">
-          <ul class="inline-list top">
-            <li><%= link_to(user_path(card.user)) do %>
-            <%= image_tag card.user.image.url(:thumb), class: "circle profile-image" %>
-          <% end %></li>
-          <li><%= link_to card.user.username, user_path(card.user) %> <span class="text-muted"><%= time_ago_in_words(card.created_at) %> ago</span></li>
-          </ul>
-        </div>
+    <h4>My Chats</h4>
 
-        <%= link_to card.sentence, card, class: "flow-text" %>
-        <% if has_permissions(card.user.id) && card.translation.nil? %>
-          <%= form_for(card, method: :put) do |f| %>
-            <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
-            <%= f.submit "Add Translation", class: "btn" %>
-          <% end %>
-        <% else %>
-          <div class="text-muted"><%= card.translation %></div>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render 'cards' %>
 
   </div>
 

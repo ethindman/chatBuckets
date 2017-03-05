@@ -1,23 +1,18 @@
 <% if has_permissions(@card.user.id) %>
 <div class="right">
-  <!-- Modal Trigger -->
-  <%= link_to "Edit Card", "#modal1", class: "flat-btn" %>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <i class="material-icons modal-action modal-close right">close</i>
-      <h4>Edit Card</h4>
-      <%= render 'edit_card_form.html' %>
-    </div>
-  </div>
+<a class='dropdown-button' href='#' data-activates='card-actions'><i class="material-icons">arrow_drop_down</i></a>
+<ul id='card-actions' class='dropdown-content'>
+  <li><%= link_to "Edit Card", "#edit-card-modal", class: "flat-btn" %></li>
+  <li class="divider"></li>
+  <li><%= link_to "Delete", card_path(@card), method: :delete, data: { confirm: "Are you sure?" } %></li>
+</ul>
 </div>
 <% end %>
 
 <h1><%= @card.sentence %></h1>
 
 <div class="container-mb-20 list-item-property">
-  <p class="word-break text-muted list-item-content"><%= !@card.translation.nil? && @card.translation.length > 0 ? @card.translation : 'Add translation' %></p>
+  <p class="word-break text-muted list-item-content"><i class="material-icons inline-icon">language</i>&nbsp;<%= !@card.translation.blank? ? @card.translation : 'Add translation' %></p>
   <%= form_for(@card, method: :put) do |f| %>
     <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off", class: "list-item-input" %>
     <%= f.submit "Save", class: "btn" %>
@@ -25,28 +20,13 @@
   <% end %>
 </div>
 
-<div class="container-mb-20 list-item-property">
-  <h5>My responses: </h5>
-  <p class="word-break text-muted list-item-content"><%= !@card.my_response.nil? && @card.my_response.length > 0 ? @card.my_response : 'Add a response' %></p>
-  <%= form_for([@question_list, @card], method: :put) do |f| %>
-    <%= f.text_area :my_response, placeholder: "My response", autocomplete: "off", class: "materialize-textarea list-item-input" %>
-    <%= f.submit "Save", class: "btn" %>
-    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
-  <% end %>
-</div>
-
-<div class="container-mb-20 list-item-property">
-  <h5>Variations: </h5>
-  <p class="word-break text-muted list-item-content"><%= !@card.variations.nil? && @card.variations.length > 0 ? @card.variations : "Add variations" %></p>
-  <%= form_for([@question_list, @card], method: :put) do |f| %>
-    <%= f.text_area :variations, placeholder: "Variations", autocomplete: "off", class: "materialize-textarea list-item-input" %>
-    <%= f.submit "Save", class: "btn" %>
-    <button class="cancel-form-submission btn-flat" onclick="return false;">Cancel</button>
-  <% end %>
-</div>
-
-<div class="right">
-  <%= link_to "Delete", card_path(@card), method: :delete, data: { confirm: "Are you sure?" }, class: "btn red" %>
+<!-- Edit card Modal -->
+<div id="edit-card-modal" class="modal">
+  <div class="modal-content">
+    <i class="material-icons modal-action modal-close right">close</i>
+    <h4>Edit Card</h4>
+    <%= render 'edit_card_form.html' %>
+  </div>
 </div>
 
 <script>
