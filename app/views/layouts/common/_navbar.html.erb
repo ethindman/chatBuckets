@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper container">
-    <%= link_to "ChattyApp", root_path, class: "brand-logo center" %>
+    <%= link_to "LingoPad", root_path, class: "brand-logo center" %>
     <ul id="nav-mobile" class="left hide-on-med-and-down">
       <li class="<%= 'active' if controller?("static_pages") && action?("feed") %>"><%= link_to "Home", root_path %></li>
       <li class="<%= 'active' if controller?("users") && action?("index") %>"><%= link_to "People", users_path %></li>
@@ -18,7 +18,15 @@
       </li>
       <!-- dropdown definition -->
       <ul id="userMenu" class="dropdown-content">
+        <li><%= link_to "New Card", "#" %></li>
+        <li><%= link_to "New Diary", "#" %></li>
+        <li><%= link_to "Cards", "#" %></li>
+        <li><%= link_to "Diaries", "#" %></li>
+        <li class="divider"></li>
         <li><%= link_to "Profile", user_path(current_user.id) %></li>
+        <li><%= link_to "Likes", "#" %></li>
+        <li><%= link_to "Followers", "#" %></li>
+        <li><%= link_to "Following", "#" %></li>
         <li class="divider"></li>
         <li><%= link_to "Edit Account", edit_user_registration_path %></li>
         <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
