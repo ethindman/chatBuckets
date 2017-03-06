@@ -34,16 +34,21 @@
 
   <div class="col sm12 m8">
 
-    <div class="container-mb-20">
-      <%= form_for(@card) do |f| %>
-        <%= f.text_field :sentence, placeholder: "What's new?", autocomplete: "off" %>
-        <div class="right-align">
-          <%= f.submit "Add", class: "btn" %>
-        </div>
-      <% end %>
+    <div class="media-object card-list-item">
+      <div class="media-object-section">
+        <%= link_to(user_path(current_user)) do %>
+          <%= image_tag current_user.image.url(:small), class: "rounded profile-image", height: "48", width: "48" %>
+        <% end %>
+      </div>
+      <div class="media-object-section full-width">
+        <%= form_for(@card) do |f| %>
+          <%= f.text_field :sentence, placeholder: "What's new?", autocomplete: "off" %>
+          <div class="right-align">
+            <%= f.submit "Add", class: "btn" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-
-    <h4>My Chats</h4>
 
     <% @cards.each do |card| %>
       <div class="card-list-item">
