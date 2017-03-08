@@ -10,6 +10,8 @@
             <% end %>
           </li>
           <li><%= link_to current_user.username, user_path(current_user) %></li>
+          <li><i class="material-icons inline-icon">chat_bubble</i>&nbsp;<b>Native Language:</b>&nbsp;<%= current_user.native_language.capitalize %></li>
+          <li><i class="material-icons inline-icon">mode_edit</i>&nbsp;<b>Study Language:</b>&nbsp;<%= current_user.language_of_study.capitalize %></li>
         </ul>
 
         <table>
@@ -50,37 +52,7 @@
       </div>
     </div>
 
-    <% @cards.each do |card| %>
-      <div class="card-list-item">
-        <div class="right">
-          <% if has_permissions(card.user.id) %>
-            <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-        </div>
-
-        <div class="media-object">
-          <div class="media-object-section">
-              <%= link_to(user_path(card.user)) do %>
-                <%= image_tag card.user.image.url(:medium), class: "rounded profile-image", height: "48", width: "48" %>
-              <% end %>
-          </div>
-          <div class="media-object-section full-width">
-            <div class="card-meta">
-              <%= link_to card.user.username, user_path(card.user) %><span class="text-muted"> <%= time_ago_in_words(card.created_at) %> ago</span> <span class="text-muted"><%= link_to "View", card %></span>
-            </div>
-            <p class="card-text"><%= card.sentence %></p>
-            <% if has_permissions(card.user.id) && card.translation.blank? %>
-              <%= form_for(card, method: :put) do |f| %>
-                <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
-                <%= f.submit "Add Translation", class: "btn" %>
-              <% end %>
-            <% else %>
-              <div class="text-muted"><i class="material-icons inline-icon">language</i>&nbsp;<%= card.translation %></div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    <% end %>
+    <%= render 'cards/cards_list' %>
 
   </div>
 

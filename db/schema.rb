@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,15 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305102320) do
+ActiveRecord::Schema.define(version: 20170307085401) do
 
   create_table "cards", force: :cascade do |t|
     t.string   "sentence"
     t.text     "translation"
     t.integer  "user_id"
     t.integer  "bucket_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "tags",        default: "--- []\n"
+    t.integer  "likes_count", default: 0
+    t.index ["tags"], name: "index_cards_on_tags"
   end
 
   create_table "question_list_items", force: :cascade do |t|
@@ -31,9 +33,8 @@ ActiveRecord::Schema.define(version: 20170305102320) do
     t.text     "notes"
     t.text     "my_response"
     t.text     "question_variations"
+    t.index ["question_list_id"], name: "index_question_list_items_on_question_list_id"
   end
-
-  add_index "question_list_items", ["question_list_id"], name: "index_question_list_items_on_question_list_id"
 
   create_table "question_lists", force: :cascade do |t|
     t.string   "title"
@@ -48,11 +49,10 @@ ActiveRecord::Schema.define(version: 20170305102320) do
     t.integer  "followed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
-
-  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -72,9 +72,10 @@ ActiveRecord::Schema.define(version: 20170305102320) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "username"
+    t.integer  "native_language",        default: 0
+    t.integer  "language_of_study",      default: 0
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
