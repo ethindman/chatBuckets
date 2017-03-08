@@ -9,7 +9,7 @@
 </div>
 <% end %>
 
-<h1><%= @card.sentence %></h1>
+<h1><%= @card.body %></h1>
 
 <div class="container-mb-20 list-item-property">
   <p class="word-break text-muted list-item-content"><i class="material-icons inline-icon">language</i>&nbsp;<%= !@card.translation.blank? ? @card.translation : 'Add translation' %></p>

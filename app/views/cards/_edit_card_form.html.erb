@@ -1,5 +1,5 @@
 <%= form_for(@card) do |f| %>
-  <%= f.text_field :sentence, placeholder: "Sentence" %>
+  <%= f.text_field :body, placeholder: "Sentence", autofocus: true %>
   <%= f.text_field :translation, placeholder: "Translation" %>
   <%= f.submit "Save", class: "btn" %>
 <% end %>
