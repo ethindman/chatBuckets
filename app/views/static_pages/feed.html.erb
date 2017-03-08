@@ -32,25 +32,31 @@
         </table>
       </div>
     </div>
+
+    <div class="user-actions">
+      <!-- Modal Trigger -->
+      <a class="btn btn-block" href="#new-flashcard-modal">New FlashCard</a>
+
+      <!-- Modal Structure -->
+      <div id="new-flashcard-modal" class="modal">
+        <div class="modal-content">
+          <i class="material-icons modal-action modal-close right">close</i>
+          <h4>Create New FlashCard</h4>
+          <%= form_for(@card) do |f| %>
+            <%= f.text_field :sentence, placeholder: "Word or phrase", autocomplete: "off" %>
+            <%= f.text_field :translation, placeholder: "Translation (optional)", autocomplete: "off" %>
+            <div class="right-align">
+              <%= f.submit "Add", class: "btn" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
   </div>
 
   <div class="col sm12 m8">
-
-    <div class="media-object card-list-item">
-      <div class="media-object-section">
-        <%= link_to(user_path(current_user)) do %>
-          <%= image_tag current_user.image.url(:small), class: "rounded profile-image", height: "48", width: "48" %>
-        <% end %>
-      </div>
-      <div class="media-object-section full-width">
-        <%= form_for(@card) do |f| %>
-          <%= f.text_field :sentence, placeholder: "What are you learning?", autocomplete: "off" %>
-          <div class="right-align">
-            <%= f.submit "Add", class: "btn" %>
-          </div>
-        <% end %>
-      </div>
-    </div>
 
     <%= render 'cards/cards_list' %>
 
