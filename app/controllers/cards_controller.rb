@@ -13,7 +13,7 @@ class CardsController < ApplicationController
       redirect_to :back
     else
       flash[:alert] = "Oops! Something went wrong... Please try again."
-      render 'new'
+      redirect_to :back
     end
   end
 
@@ -44,6 +44,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:sentence, :translation, :variations, :my_response, :bucket_id)
+      params.require(:card).permit(:body, :translation, :variations, :my_response, :bucket_id)
     end
 end

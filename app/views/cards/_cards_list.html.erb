@@ -19,7 +19,7 @@
             <%= link_to card.user.username, user_path(card.user) %><span class="text-muted"> <%= time_ago_in_words(card.created_at) %> ago</span> <span class="text-muted"><%= link_to "View", card %></span>
           </div>
           <%= link_to(card, class: "plain-link") do %>
-            <p class="card-text"><%= card.sentence %></p>
+            <p class="card-text"><%= card.body %></p>
           <% end %>
           <% if has_permissions(card.user.id) && card.translation.blank? %>
             <%= form_for(card, method: :put) do |f| %>
