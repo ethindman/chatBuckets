@@ -29,9 +29,10 @@ class User < ActiveRecord::Base
                                    dependent: :destroy
   has_many :followers, through: :reverse_relationships, source: :follower
 
-  # Question lists and Cards
+  # Question lists, cards and journals
   has_many :question_lists, dependent: :destroy
   has_many :cards, dependent: :destroy
+  has_many :journals, dependent: :destroy
 
   def feed
     r = Relationship.arel_table
