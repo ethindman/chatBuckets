@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
     :japanese,
     :french,
     :spanish,
-    :italian
   ]
 
   enum native_language: ENUM_LANGUAGES, _prefix: :native_lang

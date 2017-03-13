@@ -45,6 +45,9 @@
           <%= form_for(@card) do |f| %>
             <%= f.text_field :body, placeholder: "Word or phrase", autofocus: true %>
             <%= f.text_field :translation, placeholder: "Translation (optional)", autocomplete: "off" %>
+            <%= f.label :part_of_speech %><br>
+            <%= f.select(:part_of_speech, t('part_of_speech').invert, {}, { class: "browser-default" }) %>
+            <br>
             <div class="right-align">
               <%= f.submit "Add", class: "btn" %>
             </div>
@@ -54,11 +57,12 @@
 
     </div>
 
+    <%= render 'cards/cards_list' %>
+
   </div>
 
   <div class="col sm12 m8">
 
-    <%= render 'cards/cards_list' %>
 
   </div>
 

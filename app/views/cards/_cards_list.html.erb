@@ -2,21 +2,19 @@
   <% @cards.each do |card| %>
     <li class="card-list-item">
       <%= link_to(card) do %>
-        <div class="right">
-        <% if has_permissions(card.user.id) %>
-          <%= link_to "Delete", card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
-      </div>
 
       <div class="media-object">
         <div class="media-object-section">
             <%= link_to(user_path(card.user)) do %>
-              <%= image_tag card.user.image.url(:medium), class: "rounded profile-image", height: "48", width: "48" %>
+              <%= image_tag card.user.image.url(:medium), class: "rounded profile-image", height: "36", width: "36" %>
             <% end %>
         </div>
         <div class="media-object-section full-width">
           <div class="card-meta">
-            <%= link_to card.user.username, user_path(card.user) %><span class="text-muted"> <%= time_ago_in_words(card.created_at) %> ago</span> <span class="text-muted"><%= link_to "View", card %></span>
+            <%= link_to card.user.username, user_path(card.user) %><span class="text-muted"> <%= time_ago_in_words(card.created_at) %> ago</span>
+            <% if has_permissions(card.user.id) %>
+            <%= link_to raw('<i class="material-icons inline-icon">delete</i>'), card_path(card), method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
           </div>
           <%= link_to(card, class: "plain-link") do %>
             <p class="card-text"><%= card.body %></p>
