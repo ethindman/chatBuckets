@@ -59,10 +59,34 @@
 
     <%= render 'cards/cards_list' %>
 
+    <%= link_to "View all", "#" %>
+
   </div>
 
   <div class="col sm12 m8">
 
+    <!-- Modal Trigger -->
+    <a class="btn btn-block" href="#new-journal-modal">New Journal</a>
+
+    <!-- Modal Structure -->
+    <div id="new-journal-modal" class="modal">
+      <div class="modal-content">
+        <i class="material-icons modal-action modal-close right">close</i>
+        <h4>Create New Journal</h4>
+        <%= form_for(@journal) do |f| %>
+          <%= f.text_field :title, placeholder: "Title (optional)", autofocus: true %>
+          <%= f.text_area :body, placeholder: "Body", class: "materialize-textarea" %>
+          <%= f.text_field :translation, placeholder: "Translation (optional)", autocomplete: "off" %>
+          <div class="right-align">
+            <%= f.submit "Add", class: "btn" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <br>
+
+    <%= render 'journals/journals_list' %>
 
   </div>
 

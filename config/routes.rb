@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :cards
+  resources :journals
 
   get '/welcome', to: 'static_pages#welcome'
 
