@@ -25,4 +25,7 @@ en:
     japanese: 'Japanese'
     french: 'French'
     spanish: 'Spanish'
-    italian: 'Italian'
+  part_of_speech:
+    noun: 'Noun'
+    adjective: 'Adjective'
+    verb: 'Verb'

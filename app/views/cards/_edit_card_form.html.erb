@@ -1,5 +1,8 @@
 <%= form_for(@card) do |f| %>
   <%= f.text_field :body, placeholder: "Sentence", autofocus: true %>
   <%= f.text_field :translation, placeholder: "Translation" %>
+  <%= f.label :part_of_speech %><br>
+  <%= f.select(:part_of_speech, t('part_of_speech').invert, {}, { class: "browser-default" }) %>
+  <br>
   <%= f.submit "Save", class: "btn" %>
 <% end %>

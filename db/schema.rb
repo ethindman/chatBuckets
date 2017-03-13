@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308102105) do
+ActiveRecord::Schema.define(version: 20170313081208) do
 
   create_table "cards", force: :cascade do |t|
     t.string   "body"
     t.text     "translation"
     t.integer  "user_id"
     t.integer  "bucket_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.string   "tags",        default: "--- []\n"
-    t.integer  "likes_count", default: 0
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "tags",           default: "--- []\n"
+    t.integer  "likes_count",    default: 0
+    t.integer  "part_of_speech", default: 0
     t.index ["tags"], name: "index_cards_on_tags"
   end
 

@@ -5,4 +5,17 @@ class Card < ActiveRecord::Base
 
   validates :body, presence: true
 
+  ENUM_PART_OF_SPEECH = [
+    :noun,
+    :verb,
+    :adjective,
+    :adverb,
+    :pronoun,
+    :preposition,
+    :conjunction,
+    :other
+  ]
+
+  enum part_of_speech: ENUM_PART_OF_SPEECH
+
 end
