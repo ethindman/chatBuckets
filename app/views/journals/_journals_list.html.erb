@@ -1,7 +1,11 @@
 <ul class="card-list">
   <% @journals.each do |journal| %>
     <li class="card-list-item">
-      <%= link_to(journal) do %>
+      <div class="right">
+        <% if has_permissions(journal.user.id) %>
+          <%= link_to raw('Delete'), journal_path(journal), method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      </div>
 
       <div class="media-object">
         <div class="media-object-section">
@@ -12,25 +16,19 @@
         <div class="media-object-section full-width">
           <div class="card-meta">
             <%= link_to journal.user.username, user_path(journal.user) %><span class="text-muted"> <%= time_ago_in_words(journal.created_at) %> ago</span>
-            <% if has_permissions(journal.user.id) %>
-            <%= link_to raw('<i class="material-icons inline-icon">delete</i>'), card_path(journal), method: :delete, data: { confirm: "Are you sure?" } %>
-            <% end %>
           </div>
-          <h5><%= journal.title %></h5>
-          <%= link_to(journal, class: "plain-link") do %>
-            <p class="card-text"><%= journal.body %></p>
-          <% end %>
+          <h5><%= link_to journal.title, journal %></h5>
+          <p class="card-text"><%= journal.body %></p>
           <% if has_permissions(journal.user.id) && journal.translation.blank? %>
             <%= form_for(journal, method: :put) do |f| %>
               <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
-              <%= f.submit "Add Translation", class: "btn" %>
+              <%= f.submit "Add Translation", class: "btn grey" %>
             <% end %>
           <% else %>
             <div class="text-muted"><i class="material-icons inline-icon">language</i>&nbsp;<%= journal.translation %></div>
           <% end %>
         </div>
       </div>
-      <% end %>
     </li>
   <% end %>
 </ul>

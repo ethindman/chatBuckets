@@ -1,8 +1,6 @@
 <ul class="card-list">
   <% @cards.each do |card| %>
     <li class="card-list-item">
-      <%= link_to(card) do %>
-
       <div class="media-object">
         <div class="media-object-section">
             <%= link_to(user_path(card.user)) do %>
@@ -22,14 +20,13 @@
           <% if has_permissions(card.user.id) && card.translation.blank? %>
             <%= form_for(card, method: :put) do |f| %>
               <%= f.text_field :translation, placeholder: "Translation", autocomplete: "off" %>
-              <%= f.submit "Add Translation", class: "btn" %>
+              <%= f.submit "Add Translation", class: "btn grey" %>
             <% end %>
           <% else %>
             <div class="text-muted"><i class="material-icons inline-icon">language</i>&nbsp;<%= card.translation %></div>
           <% end %>
         </div>
       </div>
-      <% end %>
     </li>
   <% end %>
 </ul>
