@@ -13,9 +13,14 @@ class Card < ActiveRecord::Base
     :pronoun,
     :preposition,
     :conjunction,
+    :phrase,
+    :idiom,
     :other
   ]
 
   enum part_of_speech: ENUM_PART_OF_SPEECH
+
+  has_attached_file :image, styles: { medium: "600x400#", small: "300x200#" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 end

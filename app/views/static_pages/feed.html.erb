@@ -35,14 +35,17 @@
 
     <div class="user-actions">
       <!-- Modal Trigger -->
-      <a class="btn btn-block" href="#new-flashcard-modal">New FlashCard</a>
+      <a class="btn grey btn-block" href="#new-flashcard-modal">New FlashCard</a>
 
       <!-- Modal Structure -->
       <div id="new-flashcard-modal" class="modal">
         <div class="modal-content">
           <i class="material-icons modal-action modal-close right">close</i>
           <h4>Create New FlashCard</h4>
-          <%= form_for(@card) do |f| %>
+          <%= form_for @card, html: { multipart: true } do |f| %>
+            <%= f.label :image %>
+            <%= f.file_field :image %>
+            <br>
             <%= f.text_field :body, placeholder: "Word or phrase", autofocus: true %>
             <%= f.text_field :translation, placeholder: "Translation (optional)", autocomplete: "off" %>
             <%= f.label :part_of_speech %><br>
@@ -73,9 +76,12 @@
       <div class="modal-content">
         <i class="material-icons modal-action modal-close right">close</i>
         <h4>Create New Journal</h4>
-        <%= form_for(@journal) do |f| %>
+        <%= form_for @journal, html: { multipart: true } do |f| %>
+          <%= f.label :image %>
+          <%= f.file_field :image %>
+          <br>
           <%= f.text_field :title, placeholder: "Title (optional)", autofocus: true %>
-          <%= f.text_area :body, placeholder: "Body", class: "materialize-textarea" %>
+          <%= f.text_area :body, placeholder: "Write your journal here in your target language", class: "materialize-textarea" %>
           <%= f.text_field :translation, placeholder: "Translation (optional)", autocomplete: "off" %>
           <div class="right-align">
             <%= f.submit "Add", class: "btn" %>

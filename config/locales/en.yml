@@ -29,4 +29,5 @@ en:
     noun: 'Noun'
     adjective: 'Adjective'
     verb: 'Verb'
+    phrase: 'Phrase'
     other: 'Other'
