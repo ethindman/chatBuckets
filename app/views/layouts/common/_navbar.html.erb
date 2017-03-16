@@ -20,10 +20,10 @@
       <ul id="userMenu" class="dropdown-content">
         <li><%= link_to "New Card", "#" %></li>
         <li><%= link_to "New Diary", "#" %></li>
-        <li><%= link_to "Cards", "#" %></li>
-        <li><%= link_to "Diaries", "#" %></li>
+        <li><%= link_to "FlashCards", cards_user_path(current_user) %></li>
+        <li><%= link_to "Journals", journals_user_path(current_user) %></li>
         <li class="divider"></li>
-        <li><%= link_to "Profile", user_path(current_user.id) %></li>
+        <li><%= link_to "Profile", user_path(current_user) %></li>
         <li><%= link_to "Likes", "#" %></li>
         <li><%= link_to "Followers", "#" %></li>
         <li><%= link_to "Following", "#" %></li>

@@ -1,0 +1,9 @@
+<h1>My cards</h1>
+
+<% @cards.each do |card| %>
+  <%= link_to(card) do %>
+    <div class="chip">
+      <%= card.body %>
+    </div><br>
+  <% end %>
+<% end %>
