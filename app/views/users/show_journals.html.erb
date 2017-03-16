@@ -1,0 +1,9 @@
+<h1>My Journals</h1>
+
+<% @journals.each do |journal| %>
+  <%= link_to(journal) do %>
+    <div class="chip">
+      <%= journal.title %>
+    </div><br>
+  <% end %>
+<% end %>

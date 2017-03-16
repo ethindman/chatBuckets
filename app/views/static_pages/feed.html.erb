@@ -17,14 +17,16 @@
         <table>
           <thead>
             <tr>
-              <th>Cards</th>
+              <th>Journals</th>
+              <th>FlashCards</th>
               <th>Followers</th>
               <th>Following</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><%= current_user.cards.count %></td>
+              <td><%= link_to current_user.journals.count, journals_user_path(current_user) %></td>
+              <td><%= link_to current_user.cards.count, cards_user_path(current_user) %></td>
               <td><%= link_to current_user.followers.count, followers_user_path(current_user) %></td>
               <td><%= link_to current_user.followed_users.count, following_user_path(current_user) %></td>
             </tr>
@@ -62,7 +64,7 @@
 
     <%= render 'cards/cards_list' %>
 
-    <%= link_to "View all", "#" %>
+    <%= link_to "View all", cards_user_path(current_user) %>
 
   </div>
 

@@ -21,6 +21,16 @@ class UsersController < ApplicationController
     render :show_follow
   end
 
+  def cards
+    @cards = current_user.cards.all.paginate(page: params[:page])
+    render :show_cards
+  end
+
+  def journals
+    @journals = current_user.journals.all.paginate(page: params[:page])
+    render :show_journals
+  end
+
   private
     def set_user
       @user = User.find(params[:id])
