@@ -14,55 +14,22 @@
           <li><i class="material-icons inline-icon">mode_edit</i>&nbsp;<b>Study Language:</b>&nbsp;<%= current_user.language_of_study.capitalize %></li>
         </ul>
 
-        <table>
-          <thead>
-            <tr>
-              <th>Journals</th>
-              <th>FlashCards</th>
-              <th>Followers</th>
-              <th>Following</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><%= link_to current_user.journals.count, journals_user_path(current_user) %></td>
-              <td><%= link_to current_user.cards.count, cards_user_path(current_user) %></td>
-              <td><%= link_to current_user.followers.count, followers_user_path(current_user) %></td>
-              <td><%= link_to current_user.followed_users.count, following_user_path(current_user) %></td>
-            </tr>
-          </tbody>
-        </table>
+        <ul class="collection">
+          <li class="collection-item">Journals: <%= link_to current_user.journals.count, journals_user_path(current_user) %></li>
+          <li class="collection-item">FlashCards: <%= link_to current_user.cards.count, cards_user_path(current_user) %></li>
+          <li class="collection-item">Followers: <%= link_to current_user.followers.count, followers_user_path(current_user) %></li>
+          <li class="collection-item">Following: <%= link_to current_user.followed_users.count, following_user_path(current_user) %></li>
+        </ul>
       </div>
     </div>
 
     <div class="user-actions">
-      <!-- Modal Trigger -->
-      <a class="btn grey btn-block" href="#new-flashcard-modal">New FlashCard</a>
 
-      <!-- Modal Structure -->
-      <div id="new-flashcard-modal" class="modal">
-        <div class="modal-content">
-          <i class="material-icons modal-action modal-close right">close</i>
-          <h4>Create New FlashCard</h4>
-          <%= form_for @card, html: { multipart: true } do |f| %>
-            <%= f.label :image %>
-            <%= f.file_field :image %>
-            <br>
-            <%= f.text_field :body, placeholder: "Word or phrase", autofocus: true %>
-            <%= f.text_field :translation, placeholder: "Translation (optional)", autocomplete: "off" %>
-            <%= f.label :part_of_speech %><br>
-            <%= f.select(:part_of_speech, t('part_of_speech').invert, {}, { class: "browser-default" }) %>
-            <br>
-            <div class="right-align">
-              <%= f.submit "Add", class: "btn" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+      <%= render partial: 'cards/new_card_modal' %>
 
     </div>
 
-    <%= render 'cards/cards_list' %>
+    <%= render partial: 'cards/cards_list' %>
 
     <%= link_to "View all", cards_user_path(current_user) %>
 

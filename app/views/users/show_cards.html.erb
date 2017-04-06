@@ -1,5 +1,11 @@
 <h1>My cards</h1>
 
+<div class="row">
+  <div class="col s12 m3">
+    <%= render partial: 'cards/new_card_modal' %>
+  </div>
+</div>
+
 <% @cards.each do |card| %>
   <%= link_to(card) do %>
     <div class="chip">

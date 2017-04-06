@@ -22,6 +22,8 @@ class UsersController < ApplicationController
   end
 
   def cards
+    @card  = current_user.cards.build
+
     @cards = current_user.cards.all.paginate(page: params[:page])
     render :show_cards
   end

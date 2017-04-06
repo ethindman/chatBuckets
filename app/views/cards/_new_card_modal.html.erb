@@ -1,0 +1,23 @@
+<!-- New-Flash-Card-Modal Trigger -->
+<a class="btn grey lighten-1 btn-block" href="#new-flashcard-modal">New FlashCard</a>
+
+<!-- New-Flash-Card-Modal Structure -->
+<div id="new-flashcard-modal" class="modal">
+  <div class="modal-content">
+    <i class="material-icons modal-action modal-close right">close</i>
+    <h4>Create New FlashCard</h4>
+    <%= form_for @card, html: { multipart: true } do |f| %>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
+      <br>
+      <%= f.text_field :body, placeholder: "Word or phrase", autofocus: true %>
+      <%= f.text_field :translation, placeholder: "Translation (optional)", autocomplete: "off" %>
+      <%= f.label :part_of_speech %><br>
+      <%= f.select(:part_of_speech, t('part_of_speech').invert, {}, { class: "browser-default" }) %>
+      <br>
+      <div class="right-align">
+        <%= f.submit "Add", class: "btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
